@@ -18,7 +18,7 @@ class Frame extends Evented
     @frame.style.display = 'none'
     @addListener(@frame)
 
-    @frame.src = "#{ opts.host }##{ clientId }"
+    @frame.src = "#{ @opts.host }##{ clientId }"
 
     document.body.appendChild @frame
 
@@ -85,6 +85,7 @@ frame = null
 createClient = (opts) ->
   if typeof opts is 'string'
     opts = {siteId: opts}
+  {siteId} = opts
 
   if not cache[siteId]
     if not frame

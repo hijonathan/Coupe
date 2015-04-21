@@ -28,7 +28,7 @@ Frame = (function(_super) {
     this.frame = document.createElement('iframe');
     this.frame.style.display = 'none';
     this.addListener(this.frame);
-    this.frame.src = "" + opts.host + "#" + clientId;
+    this.frame.src = "" + this.opts.host + "#" + clientId;
     return document.body.appendChild(this.frame);
   };
 
@@ -131,11 +131,13 @@ cache = {};
 frame = null;
 
 createClient = function(opts) {
+  var siteId;
   if (typeof opts === 'string') {
     opts = {
       siteId: opts
     };
   }
+  siteId = opts.siteId;
   if (!cache[siteId]) {
     if (!frame) {
       frame = new Frame(opts);
